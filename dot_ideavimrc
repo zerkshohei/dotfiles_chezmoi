@@ -1,0 +1,66 @@
+set showmode
+set history=1000
+
+
+"大文字小文字の区別なし
+set ignorecase
+
+"検索時に大文字を含んでいたら大/小を区別
+set smartcase
+
+"検索対象をハイライト
+"ハイライトを消す場合は:noh[l]
+set hlsearch
+
+" インサートモードから抜けると自動的にIMEをオフにする
+set iminsert=2
+
+" 行番号設定
+set number
+set relativenumber
+
+" 入力モード中に素早くJJと入力した場合はESCとみなす
+inoremap jj <Esc>
+
+" easy system clipboard copy/paste
+noremap <space>y "*y
+noremap <space>Y "*Y
+noremap <space>p "*p
+noremap <space>P "*P
+
+" actions
+nnoremap <space>t :action FileStructurePopup<cr>
+nnoremap <space>T :action GotoSymbol<cr>
+nnoremap <space>a :action GotoAction<cr>
+
+nnoremap <space>] :action GotoImplementation<cr>
+nnoremap <space>[ :action GotoSuperMethod<cr>
+nnoremap <space>u :action FindUsages<cr>
+nnoremap <space>gt :action GotoTest<cr>
+nnoremap <space>k :action HighlightUsagesInFile<cr>
+nnoremap \c :action CheckStyleCurrentFileAction<cr>
+
+" nnoremap [<space> O<esc>j
+" nnoremap ]<space> o<esc>k
+" nnoremap [q :action PreviousOccurence<cr>
+" nnoremap ]q :action NextOccurence<cr>
+nnoremap ]] :action MethodDown<CR>
+nnoremap [[ :action MethodUp<CR>
+" nnoremap [c :action VcsShowPrevChangeMarker<cr>
+" nnoremap ]c :action VcsShowNextChangeMarker<cr>
+
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+" but preserve ideavim defaults
+nnoremap g<c-o> <c-o>
+nnoremap g<c-i> <c-i>
+
+" built in search looks better
+nnoremap / :action Find<cr>
+" but preserve ideavim search
+nnoremap g/ /
+
+
+" built in menus
+nnoremap <space><space>r :action RefactoringMenu<cr>
