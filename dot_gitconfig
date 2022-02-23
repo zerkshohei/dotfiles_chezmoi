@@ -1,0 +1,8 @@
+[user]
+    name = zerk
+    email = zerkshohei@users.noreply.github.com
+[ghq]
+    root = ~/ghq
+    user = zerkshohei
+[core]
+    excludesfile = ~/.gitignore_global

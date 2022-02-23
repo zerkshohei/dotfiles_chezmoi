@@ -1,0 +1,27 @@
+alias air="BluetoothConnector --connect 0c-3b-50-68-b4-73 --notify"
+alias vi="nvim"
+alias nv="nvim"
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  # TODO: completions from asdf install
+
+  autoload -Uz compinit
+  compinit
+fi
+
+if type brew &>/dev/null; then
+  . $(brew --prefix asdf)/libexec/asdf.sh
+fi
+
+function gf() {
+  local destination_dir="$(ghq list | fzf)"
+  if [ -n "$destination_dir" ]; then
+    BUFFER="cd $(ghq list --full-path --exact $destination_dir)"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N gf
+bindkey '^]' gf

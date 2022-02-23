@@ -1,0 +1,9 @@
+# markdown用
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft =  ['markdown', 'pandoc.markdown', 'rmd']
+build = 'cd app & yarn install'
+hook_add = '''
+let g:mkdp_browser = 'safari'
+let g:mkdp_auto_close = 0
+'''

@@ -1,0 +1,17 @@
+fzf 0.29.0
+ghq 1.2.1
+tmux 3.2a
+neovim 0.6.1
+go-sdk system
+python 3.10.2
+awscli 2.4.16
+aws-vault 6.5.0
+nodejs lts-gallium
+shellcheck 0.8.0
+shfmt 3.4.2
+make 4.3
+bat system
+chezmoi 2.11.2
+lazygit 0.32.2
+ruby 3.1.1
+yarn system

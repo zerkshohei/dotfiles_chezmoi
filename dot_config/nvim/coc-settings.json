@@ -1,0 +1,15 @@
+{
+    "languageserver": {
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
+        }
+    },
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json": "docker-compose*"
+    },
+    "yaml.validate":true,
+    "yaml.format.enable": true
+}

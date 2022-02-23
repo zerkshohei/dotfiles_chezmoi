@@ -1,0 +1,65 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+hook_add = '''
+let g:polyglot_disabled = ['markdown', 'tsx', 'typescript', 'csv', 'dockerfile']
+'''
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+hook_add = '''
+  let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = "airblade/vim-gitgutter"
+
+[[plugins]]
+repo = "tpope/vim-fugitive"
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+  \'active': {
+  \  'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+  \  },
+  \  'component_function': {
+  \    'gitbranch': 'fugitive#head',
+  \   },
+  \   }
+set laststatus=2
+set noshowmode
+'''
+
+#coc系を入れてみる
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+merge = 0
+hook_add = '''
+  source ~/.config/nvim/coc.vim
+'''
+
+[[plugins]]
+repo = 'mhartington/oceanic-next'
+
+#fzf brewのものを使用する。
+[[plugins]]
+repo = 'fzf'
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+
