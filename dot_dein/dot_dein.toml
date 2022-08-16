@@ -2,6 +2,9 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+
+[[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
@@ -56,10 +59,30 @@ hook_add = '''
 [[plugins]]
 repo = 'mhartington/oceanic-next'
 
-#fzf brewのものを使用する。
 [[plugins]]
-repo = 'fzf'
+repo = 'junegunn/fzf'
+build = './install --bin'
+merged = '0'
+
+#fzf asdfのものを使用する。
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
+
+# which-key
+[[plugins]]
+repo = 'folke/which-key.nvim'
+hook_add = '''
+lua << EOF
+  require("which-key").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
+'''
+
+# TODO 設定できたらやりたい
+# [[plugins]]
+# repo = 'kdheepak/lazygit.nvim'
 

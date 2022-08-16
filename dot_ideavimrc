@@ -1,8 +1,24 @@
+source ~/.intellimacs/spacemacs.vim
+
+source ~/.intellimacs/which-key.vim
+
+source ~/.intellimacs/extra.vim
+source ~/.intellimacs/major.vim
+source ~/.intellimacs/hybrid.vim
+
+" ディレクトリ専用プラグイン
+set NERDTree
+
+" 自動切り替え、コンテキスト判断しない
+let context_aware=0
+set keep-english-in-normal-and-restore-in-insert
+
+" spacemacsでやっているので不要かもしれないとするadsf
 set showmode
 set history=1000
 
 
-"大文字小文字の区別なし
+" 大文字小文字の区別なし
 set ignorecase
 
 "検索時に大文字を含んでいたら大/小を区別
@@ -12,9 +28,6 @@ set smartcase
 "ハイライトを消す場合は:noh[l]
 set hlsearch
 
-" インサートモードから抜けると自動的にIMEをオフにする
-set iminsert=2
-
 " 行番号設定
 set number
 set relativenumber
@@ -23,22 +36,22 @@ set relativenumber
 inoremap jj <Esc>
 
 " easy system clipboard copy/paste
-noremap <space>y "*y
-noremap <space>Y "*Y
-noremap <space>p "*p
-noremap <space>P "*P
+" noremap <space>y "*y
+" noremap <space>Y "*Y
+" noremap <space>p "*p
+" noremap <space>P "*P
 
 " actions
-nnoremap <space>t :action FileStructurePopup<cr>
-nnoremap <space>T :action GotoSymbol<cr>
-nnoremap <space>a :action GotoAction<cr>
+" onnoremap <space>t :action FileStructurePopup<cr>
+" nnoremap <space>T :action GotoSymbol<cr>
+" nnoremap <space>a :action GotoAction<cr>
 
-nnoremap <space>] :action GotoImplementation<cr>
-nnoremap <space>[ :action GotoSuperMethod<cr>
-nnoremap <space>u :action FindUsages<cr>
-nnoremap <space>gt :action GotoTest<cr>
-nnoremap <space>k :action HighlightUsagesInFile<cr>
-nnoremap \c :action CheckStyleCurrentFileAction<cr>
+" nnoremap <space>] :action GotoImplementation<cr>
+" nnoremap <space>[ :action GotoSuperMethod<cr>
+" nnoremap <space>u :action FindUsages<cr>
+" nnoremap <space>gt :action GotoTest<cr>
+" nnoremap <space>k :action HighlightUsagesInFile<cr>
+" nnoremap \c :action CheckStyleCurrentFileAction<cr>
 
 " nnoremap [<space> O<esc>j
 " nnoremap ]<space> o<esc>k
@@ -63,4 +76,5 @@ nnoremap g/ /
 
 
 " built in menus
-nnoremap <space><space>r :action RefactoringMenu<cr>
+" nnoremap <space><space>r :action RefactoringMenu<cr>
+
