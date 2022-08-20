@@ -52,3 +52,6 @@ if type fzf &>/dev/null && type tmux &>/dev/null; then
   export FZF_TMUX_OPTS="-p 80%"
 fi
 
+if type brew &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
