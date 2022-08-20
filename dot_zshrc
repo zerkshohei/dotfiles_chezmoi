@@ -5,17 +5,28 @@ alias air="BluetoothConnector --connect 0c-3b-50-68-b4-73 --notify"
 alias vi="nvim"
 alias nv="nvim"
 
+alias zshrc="vi ~/.zshrc && source ~/.zshrc"
+
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-  # TODO: completions from asdf install
 
   autoload -Uz compinit
   compinit
 fi
 
+# zsh autosuggestions
 if type brew &>/dev/null; then
+  . $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+
+if type asdf &>/dev/null; then
   . $(brew --prefix asdf)/libexec/asdf.sh
+fi
+
+if type zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
 fi
 
 function gf() {
@@ -28,3 +39,16 @@ function gf() {
 }
 zle -N gf
 bindkey '^]' gf
+
+
+if type fzf &>/dev/null && type tmux &>/dev/null; then
+  export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+  export FZF_CTRL_T_OPTS="
+      --preview 'bat  --color=always --style=header,grid --line-range :100 {}'
+  "
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  # FZF使用時はtmuxでPOPUP
+  export FZF_TMUX=1
+  export FZF_TMUX_OPTS="-p 80%"
+fi
+
