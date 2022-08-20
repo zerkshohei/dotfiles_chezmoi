@@ -70,4 +70,22 @@ if type brew &>/dev/null; then
   eval "$(starship init zsh)"
 fi
 
+# fbr - checkout git branch
+function fzf-checkout-branch() {
+  local branches branch
+  branches=$(git branch | sed -E 's/\* |  //g' | cut -d " " -f 1) &&
+  branch=$(echo "$branches" | fzf --preview "git show --color=always {}") &&
+  git checkout "$branch"
+  zle accept-line
+}
+zle     -N   fzf-checkout-branch
+bindkey "^b" fzf-checkout-branch
+
+# wrap_zoxide
+functions __wrap_zoxide(){
+  zi
+  zle accept-line
+}
+zle -N __wrap_zoxide
+bindkey "^k" __wrap_zoxide
 
