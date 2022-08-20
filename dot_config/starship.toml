@@ -1,3 +1,6 @@
+# タイムアウト時間
+scan_timeout = 10
+
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
 
