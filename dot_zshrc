@@ -4,6 +4,7 @@ alias ls='ls -GF'
 alias air="BluetoothConnector --connect 0c-3b-50-68-b4-73 --notify"
 alias vi="nvim"
 alias nv="nvim"
+alias lg="lazygit"
 
 # exa コマンド用のエイリアス設定
 if [[ $(command -v exa) ]]; then
@@ -34,6 +35,8 @@ if type brew &>/dev/null; then
   . $(brew --prefix asdf)/libexec/asdf.sh
   eval "$(starship init zsh)"
   eval "$(zoxide init zsh)"
+
+  export LG_CONFIG_FILE="${HOME}/.config/lazygit/override.yml"
 fi
 
 # git repository 移動

@@ -1,0 +1,17 @@
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+gui:
+  timeFormat: '2006-01-02T15:04:05Z07:00' # https://pkg.go.dev/time#Time.Format
+  sidePanelWidth: 0.15
+  theme:
+    selectedLineBgColor:
+      - underline
+    selectedRangeBgColor:
+      - underline
+refresher:
+  refreshInterval: 3
+os:
+  editCommand: 'nvim'
+notARepository: 'skip'
