@@ -1,7 +1,11 @@
 export LSCOLORS=cxfxcxdxbxegedabagacad
 alias ll='ls -lGF'
 alias ls='ls -GF'
+alias air="BluetoothConnector --connect 0c-3b-50-68-b4-73 --notify"
+alias vi="nvim"
+alias nv="nvim"
 
+# exa コマンド用のエイリアス設定
 if [[ $(command -v exa) ]]; then
   alias e='exa --icons --git'
   alias l=e
@@ -16,33 +20,23 @@ if [[ $(command -v exa) ]]; then
   alias lta=eta
 fi
 
-alias air="BluetoothConnector --connect 0c-3b-50-68-b4-73 --notify"
-alias vi="nvim"
-alias nv="nvim"
-
+# 編集が多いもの
 alias zshrc="vi ~/.zshrc && source ~/.zshrc"
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
   autoload -Uz compinit
   compinit
-fi
 
-# zsh autosuggestions
-if type brew &>/dev/null; then
+  # brewでインストール済のプロセスの初期処理を実行
   . $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-if type asdf &>/dev/null; then
   . $(brew --prefix asdf)/libexec/asdf.sh
-fi
-
-if type zoxide &>/dev/null; then
+  eval "$(starship init zsh)"
   eval "$(zoxide init zsh)"
 fi
 
+# git repository 移動
 function gf() {
   local destination_dir="$(ghq list | fzf)"
   if [ -n "$destination_dir" ]; then
@@ -55,6 +49,7 @@ zle -N gf
 bindkey '^]' gf
 
 
+# fzf関連の設定追加
 if type fzf &>/dev/null && type tmux &>/dev/null; then
   export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
   export FZF_CTRL_T_OPTS="
@@ -64,10 +59,6 @@ if type fzf &>/dev/null && type tmux &>/dev/null; then
   # FZF使用時はtmuxでPOPUP
   export FZF_TMUX=1
   export FZF_TMUX_OPTS="-p 80%"
-fi
-
-if type brew &>/dev/null; then
-  eval "$(starship init zsh)"
 fi
 
 # fbr - checkout git branch
@@ -81,7 +72,7 @@ function fzf-checkout-branch() {
 zle     -N   fzf-checkout-branch
 bindkey "^b" fzf-checkout-branch
 
-# wrap_zoxide
+# zoxideをショートカットで使用するためラップ
 functions __wrap_zoxide(){
   zi
   zle accept-line
