@@ -1,3 +1,32 @@
+# change zsh history folder
+export HISTFILE="${XDG_STATE_HOME}/zsh_history"
+
+# TODO: move tolazyfile
+case "$OSTYPE" in
+    darwin*)
+        (( ${+commands[gdate]} )) && alias date='gdate'
+        (( ${+commands[gls]} )) && alias ls='gls'
+        (( ${+commands[gmkdir]} )) && alias mkdir='gmkdir'
+        (( ${+commands[gcp]} )) && alias cp='gcp'
+        (( ${+commands[gmv]} )) && alias mv='gmv'
+        (( ${+commands[grm]} )) && alias rm='grm'
+        (( ${+commands[gdu]} )) && alias du='gdu'
+        (( ${+commands[ghead]} )) && alias head='ghead'
+        (( ${+commands[gtail]} )) && alias tail='gtail'
+        (( ${+commands[gsed]} )) && alias sed='gsed'
+        (( ${+commands[ggrep]} )) && alias grep='ggrep'
+        (( ${+commands[gfind]} )) && alias find='gfind'
+        (( ${+commands[gdirname]} )) && alias dirname='gdirname'
+        (( ${+commands[gxargs]} )) && alias xargs='gxargs'
+    ;;
+esac
+
+# replace rm command to trash
+(( ${+commands[trash]} )) && alias rm='trash'
+
+### ripgrep ###
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+
 export LSCOLORS=cxfxcxdxbxegedabagacad
 alias ll='ls -lGF'
 alias ls='ls -GF'
@@ -22,17 +51,11 @@ if [[ $(command -v exa) ]]; then
 fi
 
 # 編集が多いもの
-alias zshrc="vi ~/.zshrc && source ~/.zshrc"
+alias zshrc="vi ${ZDOTDIR}/.zshrc && source ${ZDOTDIR}/.zshrc"
 
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-  autoload -Uz compinit
-  compinit
 
-  # brewでインストール済のプロセスの初期処理を実行
-  . $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  . $(brew --prefix asdf)/libexec/asdf.sh
   eval "$(starship init zsh)"
   eval "$(zoxide init zsh)"
 
@@ -82,4 +105,17 @@ functions __wrap_zoxide(){
 }
 zle -N __wrap_zoxide
 bindkey "^k" __wrap_zoxide
+
+
+# TODO: move to lazyfile
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
+export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+# irb settings
+export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
+
+export EDITOR="nvim"
+
+eval "$(sheldon source)"
 
