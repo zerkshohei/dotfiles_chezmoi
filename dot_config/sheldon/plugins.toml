@@ -15,6 +15,8 @@ shell = "zsh"
 [templates]
 defer = { value = 'zsh-defer source "{{ file }}"', each = true }
 path = 'path=( "{{ dir }}" $path )'
+# fpath = 'fpath=( "{{ dir }}" $fpath )'
+fpath_completion = 'fpath=( "{{ dir }}/completions" $fpath )'
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
@@ -33,7 +35,10 @@ apply = ["defer"]
 
 [plugins.asdf]
 github = "asdf-vm/asdf"
-apply = ["defer"]
+apply = ["defer","fpath_completion"]
+
+[plugins.cargo-init]
+inline = ". ${CARGO_HOME}/env"
 
 # work for completion
 # end only
