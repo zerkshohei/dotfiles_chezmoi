@@ -27,6 +27,9 @@ esac
 ### ripgrep ###
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
+### man with bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 export LSCOLORS=cxfxcxdxbxegedabagacad
 alias ll='ls -lGF'
 alias ls='ls -GF'
