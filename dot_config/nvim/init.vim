@@ -3,7 +3,7 @@ if &compatible
 endif
 
 " dein.vimのディレクトリ
-let s:dein_dir = expand('~/.cache/dein')
+let s:dein_dir = $XDG_CACHE_HOME . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 " なければgit clone
@@ -16,8 +16,8 @@ if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
     " 管理するプラグインを記述したファイル
-    let s:toml = '~/.dein/.dein.toml'
-    let s:lazy_toml = '~/.dein/.dein_lazy.toml'
+    let s:toml = $XDG_CONFIG_HOME . '/dein/dein.toml'
+    let s:lazy_toml = $XDG_CONFIG_HOME . '/dein/dein_lazy.toml'
     call dein#load_toml(s:toml, {'lazy': 0})
     call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
@@ -29,7 +29,7 @@ if dein#check_install()
     call dein#install()
 endif
 
-colorscheme OceanicNext
+colorscheme darcula
 
 " Or if you have Neovim >= 0.1.5
 if (has("termguicolors"))
