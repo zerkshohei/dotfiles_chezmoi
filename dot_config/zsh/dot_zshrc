@@ -109,6 +109,8 @@ functions __wrap_zoxide(){
 zle -N __wrap_zoxide
 bindkey "^k" __wrap_zoxide
 
+# for emacs
+bindkey -e
 
 # TODO: move to lazyfile
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
