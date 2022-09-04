@@ -65,19 +65,6 @@ if type brew &>/dev/null; then
   export LG_CONFIG_FILE="${HOME}/.config/lazygit/override.yml"
 fi
 
-# git repository 移動
-function gf() {
-  local destination_dir="$(ghq list | fzf)"
-  if [ -n "$destination_dir" ]; then
-    BUFFER="cd $(ghq list --full-path --exact $destination_dir)"
-    zle accept-line
-  fi
-  zle clear-screen
-}
-zle -N gf
-bindkey '^]' gf
-
-
 # fzf関連の設定追加
 if type fzf &>/dev/null && type tmux &>/dev/null; then
   export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
@@ -89,6 +76,21 @@ if type fzf &>/dev/null && type tmux &>/dev/null; then
   export FZF_TMUX=1
   export FZF_TMUX_OPTS="-p 80%"
 fi
+
+# for emacs
+bindkey -e
+
+# git repository 移動
+function gf() {
+  local destination_dir="$(ghq list | fzf)"
+  if [ -n "$destination_dir" ]; then
+    BUFFER="cd $(ghq list --full-path --exact $destination_dir)"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N gf
+bindkey '^]' gf
 
 # fbr - checkout git branch
 function fzf-checkout-branch() {
@@ -108,9 +110,6 @@ functions __wrap_zoxide(){
 }
 zle -N __wrap_zoxide
 bindkey "^k" __wrap_zoxide
-
-# for emacs
-bindkey -e
 
 # TODO: move to lazyfile
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
