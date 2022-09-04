@@ -84,14 +84,11 @@ if dein#check_install()
 endif
 
 " Or if you have Neovim >= 0.1.5
-if (has("termguicolors"))
+if (has("nvim"))
     set termguicolors
     colorscheme darcula
+    "NERDTree関連
+    nnoremap <silent><C-e> :NERDTreeToggle<CR>
+    set timeoutlen=500
 endif
-
-
-"NERDTree関連
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
-set timeoutlen=500
 
