@@ -22,6 +22,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+hook_add = '''
+    nnoremap <silent><C-e> :NERDTreeToggle<CR>
+'''
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
@@ -65,10 +68,16 @@ repo = 'junegunn/fzf'
 build = './install --bin'
 merged = '0'
 
-#fzf asdfのものを使用する。
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
+
+[[plugins]]
+repo = 'yuki-yano/fzf-preview.vim'
+rev = 'release/rpc'
+hook_add = '''
+    nnoremap <silent><C-k> :Command<CR>
+'''
 
 # which-key
 [[plugins]]

@@ -87,8 +87,6 @@ endif
 if (has("nvim"))
     set termguicolors
     colorscheme darcula
-    "NERDTree関連
-    nnoremap <silent><C-e> :NERDTreeToggle<CR>
     set timeoutlen=500
 endif
 
