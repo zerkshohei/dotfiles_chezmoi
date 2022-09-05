@@ -33,10 +33,17 @@ apply = ["defer"]
 github = "zsh-users/zsh-autosuggestions"
 apply = ["defer"]
 
+# with homebrew start
+[plugins.navi]
+github = "denisidoro/navi"
+apply = ["defer"]
+
 [plugins.asdf]
 github = "asdf-vm/asdf"
 apply = ["defer","fpath_completion"]
+# with homebrew end
 
+# init env
 [plugins.cargo-init]
 inline = ". ${CARGO_HOME}/env"
 
