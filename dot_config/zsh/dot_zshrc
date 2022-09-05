@@ -75,6 +75,7 @@ if type fzf &>/dev/null && type tmux &>/dev/null; then
   # FZF使用時はtmuxでPOPUP
   export FZF_TMUX=1
   export FZF_TMUX_OPTS="-p 80%"
+  export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 fi
 
 # for emacs
@@ -82,7 +83,7 @@ bindkey -e
 
 # git repository 移動
 function gf() {
-  local destination_dir="$(ghq list | fzf)"
+  local destination_dir="$(ghq list | fzf-tmux -p 80%)"
   if [ -n "$destination_dir" ]; then
     BUFFER="cd $(ghq list --full-path --exact $destination_dir)"
     zle accept-line
@@ -96,7 +97,7 @@ bindkey '^]' gf
 function fzf-checkout-branch() {
   local branches branch
   branches=$(git branch | sed -E 's/\* |  //g' | cut -d " " -f 1) &&
-  branch=$(echo "$branches" | fzf --preview "git show --color=always {}") &&
+  branch=$(echo "$branches" | fzf-tmux -p 80% --preview "git show --color=always {}") &&
   git checkout "$branch"
   zle accept-line
 }
@@ -120,6 +121,8 @@ export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
 
 export EDITOR="nvim"
+
+export NAVI_CONFIG="$XDG_CONFIG_HOME/navi/config.yaml"
 
 eval "$(sheldon source)"
 
