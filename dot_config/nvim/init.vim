@@ -87,6 +87,6 @@ endif
 if (has("nvim"))
     set termguicolors
     colorscheme darcula
-    set timeoutlen=500
+    set timeoutlen=1000
 endif
 

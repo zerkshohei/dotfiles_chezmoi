@@ -38,22 +38,6 @@ repo = "tpope/vim-fugitive"
 [[plugins]]
 repo = 'doums/darcula'
 
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-let g:lightline = {
-  \'active': {
-  \  'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-  \  },
-  \  'component_function': {
-  \    'gitbranch': 'fugitive#head',
-  \   },
-  \ 'colorscheme': 'darculaOriginal'
-  \ }
-set laststatus=2
-set noshowmode
-'''
-
 #coc系を入れてみる
 [[plugins]]
 repo = 'neoclide/coc.nvim'
@@ -64,6 +48,23 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+  \'active': {
+  \  'left': [ [ 'mode', 'paste' ], [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+  \  },
+  \  'component_function': {
+  \    'gitbranch': 'FugitiveHead',
+  \    'cocstaus': 'coc#status'
+  \   },
+  \ 'colorscheme': 'darculaOriginal'
+  \ }
+set laststatus=2
+set noshowmode
+'''
+
+[[plugins]]
 repo = 'junegunn/fzf'
 build = './install --bin'
 merged = '0'
@@ -71,24 +72,20 @@ merged = '0'
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
-
-[[plugins]]
-repo = 'yuki-yano/fzf-preview.vim'
-rev = 'release/rpc'
 hook_add = '''
     nnoremap <silent><C-k> :Command<CR>
 '''
 
 # which-key
+# ignore fzf.preview for no popup error when exec fzf.preview
 [[plugins]]
 repo = 'folke/which-key.nvim'
 hook_add = '''
 lua << EOF
-  require("which-key").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
+  local wk = require("which-key")
+  wk.register({
+    ["[fzf-p]"] = {"which_key_ignore"}
+  })
 EOF
 '''
 
