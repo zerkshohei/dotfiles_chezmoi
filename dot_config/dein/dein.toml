@@ -89,6 +89,10 @@ lua << EOF
 EOF
 '''
 
+[[plugins]]
+repo = 'antoinemadec/coc-fzf'
+rev = 'release'
+
 # TODO 設定できたらやりたい
 # [[plugins]]
 # repo = 'kdheepak/lazygit.nvim'
