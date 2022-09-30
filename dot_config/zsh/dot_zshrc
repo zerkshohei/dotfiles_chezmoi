@@ -1,11 +1,21 @@
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:default' menu select=1
+
+
 # change zsh history folder
 export HISTFILE="${XDG_STATE_HOME}/zsh_history"
+# 不要なコマンドをhistoryから除外する
+zshaddhistory() {
+    local line="${1%%$'\n'}"
+    [[ ! "$line" =~ "^(cd|jj?|lazygit|la|ll|ls|rm|rmdir)($| )" ]]
+}
 
 # TODO: move tolazyfile
 case "$OSTYPE" in
     darwin*)
         (( ${+commands[gdate]} )) && alias date='gdate'
         (( ${+commands[gls]} )) && alias ls='gls'
+        (( ${+commands[gdircolors]} )) && alias dircolors='gdircolors'
         (( ${+commands[gmkdir]} )) && alias mkdir='gmkdir'
         (( ${+commands[gcp]} )) && alias cp='gcp'
         (( ${+commands[gmv]} )) && alias mv='gmv'
@@ -30,7 +40,6 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 ### man with bat
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export LSCOLORS=cxfxcxdxbxegedabagacad
 alias ll='ls -lGF'
 alias ls='ls -GF'
 alias air="BluetoothConnector --connect 0c-3b-50-68-b4-73 --notify"
@@ -124,5 +133,14 @@ export EDITOR="nvim"
 
 export NAVI_CONFIG="$XDG_CONFIG_HOME/navi/config.yaml"
 
-eval "$(sheldon source)"
+# TODO: move to anogher file
+export FORGIT_FZF_DEFAULT_OPTS="
+--exact
+--border
+--cycle
+--reverse
+--height '80%'
+"
 
+
+eval "$(sheldon source)"
