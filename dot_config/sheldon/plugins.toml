@@ -33,6 +33,14 @@ apply = ["defer"]
 github = "zsh-users/zsh-autosuggestions"
 apply = ["defer"]
 
+[plugins.ls-colors]
+github = "trapd00r/LS_COLORS"
+apply = ["defer"]
+
+[plugins.forgit]
+github = "wfxr/forgit"
+apply = ["defer"]
+
 # with homebrew start
 [plugins.navi]
 github = "denisidoro/navi"
