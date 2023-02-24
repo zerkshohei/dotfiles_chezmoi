@@ -2,9 +2,10 @@
     name = zerk
     email = zerkshohei@users.noreply.github.com
 [ghq]
+    root = ~/.local/share
     root = ~/ghq
 [core]
-    pager = delta
+    pager = delta -w  "${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -17,4 +18,3 @@
     colorMoved = default # show changed line
 [credential]
     helper = osxkeychain
-
