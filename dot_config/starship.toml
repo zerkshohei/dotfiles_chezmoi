@@ -1,6 +1,10 @@
 # タイムアウト時間
 scan_timeout = 10
 
+# バッテリー設定調整
+[battery]
+disabled = true
+
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
 
