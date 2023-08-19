@@ -28,11 +28,11 @@ case "$OSTYPE" in
         (( ${+commands[gfind]} )) && alias find='gfind'
         (( ${+commands[gdirname]} )) && alias dirname='gdirname'
         (( ${+commands[gxargs]} )) && alias xargs='gxargs'
+        # replace rm command to trash
+        (( ${+commands[trash]} )) && alias rm='trash'
     ;;
 esac
 
-# replace rm command to trash
-(( ${+commands[trash]} )) && alias rm='trash'
 
 ### ripgrep ###
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
@@ -90,18 +90,6 @@ fi
 # for emacs
 bindkey -e
 
-# git repository 移動
-function gf() {
-  local destination_dir="$(ghq list | fzf-tmux -p 80%)"
-  if [ -n "$destination_dir" ]; then
-    BUFFER="cd $(ghq list --full-path --exact $destination_dir)"
-    zle accept-line
-  fi
-  zle clear-screen
-}
-zle -N gf
-bindkey '^]' gf
-
 # fbr - checkout git branch
 function fzf-checkout-branch() {
   local branches branch
@@ -133,14 +121,40 @@ export EDITOR="nvim"
 
 export NAVI_CONFIG="$XDG_CONFIG_HOME/navi/config.yaml"
 
-# TODO: move to anogher file
-export FORGIT_FZF_DEFAULT_OPTS="
---exact
---border
---cycle
---reverse
---height '80%'
-"
+function widget::ghq::yuki() {
+  local project dir repository session current_session
+  dir=$(ghq list -p | sed -e "s|${HOME}|~|" | fzf-tmux -p 80% --prompt='repo> ' --preview "bat --color=always --style=numbers \$(eval echo {})/README.md" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up)
+
+  if [[ $dir == "" ]]; then
+    return 1
+  fi
+
+  if [[ ! -z ${TMUX} ]]; then
+    repository=${dir##*/}
+    session=${repository//./-}
+    current_session=$(tmux list-sessions | grep 'attached' | cut -d":" -f1)
+
+    if [[ $current_session =~ ^[0-9]+$ ]]; then
+      eval cd "${dir}"
+      tmux rename-session $session
+    else
+      tmux list-sessions | cut -d":" -f1 | grep -e "^${session}\$" > /dev/null
+      if [[ $? != 0 ]]; then
+        tmux new-session -d -c $(eval echo "${dir}") -s $session
+        tmux switch-client -t $session
+      else
+        eval cd "${dir}"
+        zle accept-line
+      fi
+    fi
+  else
+    eval cd "${dir}"
+  fi
+}
+zle -N widget::ghq::yuki
+
+# C-g で呼び出せるようにする
+bindkey "^]" widget::ghq::yuki
 
 
 eval "$(sheldon source)"
