@@ -6,7 +6,7 @@ go-sdk system
 python 3.10.2
 awscli system
 aws-vault system
-nodejs lts-gallium
+nodejs lts
 shellcheck 0.8.0
 shfmt 3.5.1
 make 4.3
