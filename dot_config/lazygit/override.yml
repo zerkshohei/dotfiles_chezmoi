@@ -13,5 +13,5 @@ gui:
 refresher:
   refreshInterval: 3
 os:
-  editCommand: 'nvim'
+  edit: 'nvim'
 notARepository: 'skip'
