@@ -38,7 +38,7 @@ esac
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
 ### man with bat
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat --theme='Dracula' -l man -p'"
 
 alias ll='ls -lGF'
 alias ls='ls -GF'
@@ -79,7 +79,7 @@ fi
 if type fzf &>/dev/null && type tmux &>/dev/null; then
   export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
   export FZF_CTRL_T_OPTS="
-      --preview 'bat  --color=always --style=header,grid --line-range :100 {}'
+      --preview 'bat  --color=always --theme='Dracula' --style=header,grid --line-range :100 {}'
   "
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   # FZF使用時はtmuxでPOPUP
