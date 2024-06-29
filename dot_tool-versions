@@ -6,8 +6,8 @@ go-sdk system
 python 3.10.2
 awscli system
 aws-vault system
-nodejs lts
-shellcheck 0.8.0
+nodejs 20.12.2
+shellcheck system
 shfmt 3.5.1
 make 4.3
 bat system
@@ -22,3 +22,6 @@ redis-cli 7.0.8
 bun 1.0.0
 sbt 1.9.9
 poetry 1.8.1
+deno system
+rye system
+php system
