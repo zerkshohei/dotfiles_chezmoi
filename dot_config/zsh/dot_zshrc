@@ -4,6 +4,8 @@ zstyle ':completion:*:default' menu select=1
 
 # change zsh history folder
 export HISTFILE="${XDG_STATE_HOME}/zsh_history"
+export HISTSIZE=10000
+export SAVESIZE=100000
 # 不要なコマンドをhistoryから除外する
 zshaddhistory() {
     local line="${1%%$'\n'}"
