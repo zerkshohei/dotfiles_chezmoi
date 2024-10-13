@@ -131,8 +131,9 @@ nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
 nnoremap <silent> <space>FF  :<C-u>Format<CR>
 
 " for fzf.preview
-nmap <space>f [fzf-p]
-xmap <space>f [fzf-p]
+" ここで設定すると<space>fを押したときに正しく動作しないため、dein.vimのwhich-keyのproxy設定を経由させる
+" nmap <space>f [fzf-p]
+" xmap <space>f [fzf-p]
 
 nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
 nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>

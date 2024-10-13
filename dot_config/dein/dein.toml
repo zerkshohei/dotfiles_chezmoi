@@ -83,8 +83,8 @@ repo = 'folke/which-key.nvim'
 hook_add = '''
 lua << EOF
   local wk = require("which-key")
-  wk.register({
-    ["[fzf-p]"] = {"which_key_ignore"}
+  wk.add({
+    { "<space>f", proxy = "[fzf-p]" ,group = "fzfpreview" },
   })
 EOF
 '''
