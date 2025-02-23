@@ -46,9 +46,9 @@ apply = ["defer"]
 github = "denisidoro/navi"
 apply = ["defer"]
 
-[plugins.asdf]
-github = "asdf-vm/asdf"
-apply = ["defer","fpath_completion"]
+#[plugins.asdf]
+#github = "asdf-vm/asdf"
+#apply = ["defer","fpath_completion"]
 # with homebrew end
 
 # init env
